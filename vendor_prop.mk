@@ -1,3 +1,4 @@
+# Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.job_delay=true \
     persist.sys.mcd_config_file=/system/etc/mcd_default.conf \
@@ -7,7 +8,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     sys.vendor.shutdown.waittime=500 \
     ro.build.shutdown_timeout=0 \
     ro.frp.pst=/dev/block/bootdevice/by-name/frp \
-    ro.opengles.version=196610 \
+    ro.opengles.version=196610
+
+# Audio
+PRODUCT_PROPERTY_OVERRIDES += \
     vendor.qcom.bluetooth.soc=cherokee \
     af.fast_track_multiplier=1 \
     vendor.audio_hal.period_size=192 \
@@ -39,24 +43,22 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.safx.pbe.enabled=false \
     vendor.audio.parser.ip.buffer.size=262144 \
     vendor.audio.flac.sw.decoder.24bit=true \
-    persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxhd-aac \
-    persist.bluetooth.a2dp_offload.cap=sbc-aptx-aptxhd-aac \
-    ro.vendor.bluetooth.wipower=false
     vendor.audio.use.sw.alac.decoder=true \
     vendor.audio.use.sw.ape.decoder=true \
     vendor.audio.hw.aac.encoder=true \
-    vendor.fm.a2dp.conc.disabled=true \
     audio.sys.noisy.broadcast.delay=600 \
+    audio.sys.offload.pstimeout.secs=3 \
     persist.vendor.audio.hifi.int_codec=true \
-    audio.sys.offload.pstimeout.secs=3
-
-#enable headset calibration
-PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.audio.volume.headset.gain.depcal=true
+    ro.af.client_heap_size_kbyte=7168 \
+    vendor.audio.volume.headset.gain.depcal=true \
+    persist.vendor.bt.aac_frm_ctl.enabled=true \
+    vendor.audio.spkr_prot.tx.sampling_rate=48000 \
+    vendor.audio.adm.buffering.ms=12 \
+    persist.vendor.audio.hw.binder.size_kbyte=1024 \
+    vendor.fm.a2dp.conc.disabled=true
 
 #add dynamic feature flags here
 PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.audio.feature.a2dp_offload.enable=false \
     vendor.audio.feature.afe_proxy.enable=true \
     vendor.audio.feature.anc_headset.enable=true \
     vendor.audio.feature.battery_listener.enable=false \
@@ -78,7 +80,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.feature.hdmi_edid.enable=true \
     vendor.audio.feature.hdmi_passthrough.enable=true \
     vendor.audio.feature.hfp.enable=true \
-    vendor.audio.feature.hifi_audio.enable=false \
+    vendor.audio.feature.hifi_audio.enable=true \
     vendor.audio.feature.hwdep_cal.enable=false \
     vendor.audio.feature.incall_music.enable=false \
     vendor.audio.feature.multi_voice_session.enable=true \
@@ -89,7 +91,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.feature.record_play_concurency.enable=false \
     vendor.audio.feature.src_trkn.enable=true \
     vendor.audio.feature.spkr_prot.enable=true \
-    vendor.audio.feature.ssrec.enable=false \
+    vendor.audio.feature.ssrec.enable=true \
     vendor.audio.feature.usb_offload.enable=true \
     vendor.audio.feature.usb_offload_burst_mode.enable=false \
     vendor.audio.feature.usb_offload_sidetone_volume.enable=false \
@@ -97,11 +99,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio.feature.vbat.enable=true \
     vendor.audio.feature.wsa.enable=false \
     vendor.audio.feature.audiozoom.enable=false \
-    vendor.audio.feature.snd_mon.enable=false
+    vendor.audio.feature.snd_mon.enable=true
 
-#enable AAC frame ctl for A2DP sinks
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.bt.aac_frm_ctl.enabled=true
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    persist.bluetooth.a2dp_offload.disabled=false \
+    ro.bluetooth.a2dp_offload.supported=true \
+    vendor.audio.feature.a2dp_offload.enable=true \
+    persist.vendor.bt.a2dp.aac_whitelist=false \
+    persist.vendor.qcom.bluetooth.enable.splita2dp=true \
+    persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxhd-aac-ldac \
+    ro.bluetooth.library_name=libbluetooth_qti.so \
+    vendor.bluetooth.soc=cherokee
 
 # Codec2 switch
 PRODUCT_PROPERTY_OVERRIDES += \
